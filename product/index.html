@@ -28,7 +28,9 @@
     <!-- tailwind-CDN  -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- HTMX -->
-    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"
+        integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+        crossorigin="anonymous"></script>
     <!-- tailwind-confiq  -->
     <script>
         tailwind.config = {
@@ -54,16 +56,10 @@
 </head>
 
 <body class="font-Poppins overflow-x-hidden bg-brown-bg">
-    <h1 class="text-3xl font-bold text-center mb-6">Product Viewer</h1>
-
-    <div id="product-container"
-         hx-get="/.netlify/functions/concreteProduct"
-         hx-vals='js:{ url: new URLSearchParams(window.location.search).get("url") }'
-         hx-trigger="load"
-         hx-target="this"
-         hx-swap="outerHTML"
-         class="w-full grid place-items-center">
-         <div class="loader"></div>
+    <div id="product-container" hx-get="/.netlify/functions/concreteProduct"
+        hx-vals='js:{ url: new URLSearchParams(window.location.search).get("url") }' hx-trigger="load" hx-target="this"
+        hx-swap="outerHTML" class="w-screen h-screen grid place-items-center">
+        <div class="loader"></div>
     </div>
 </body>
 
