@@ -27,6 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
     <!-- tailwind-CDN  -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
     <!-- tailwind-confiq  -->
     <script>
         tailwind.config = {
@@ -154,33 +156,8 @@
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-semibold text-center mb-12">Sprawdź nasze produkty</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white p-6 shadow-lg">
-                    <img src="https://www.onerugged.com/upload/goods/2023-03/6421030a5a5ef.jpg" alt="Produkt 1"
-                        class="w-full h-40 object-cover mb-4">
-                    <h3 class="text-2xl font-semibold mb-4">Produkt 1</h3>
-                    <p>Opis produktu 1. Wytrzymałe urządzenie idealne do pracy w trudnych warunkach.</p>
-                    <a href="#" class="text-yellow-700 font-semibold hover:underline">Dowiedz się więcej</a>
-                </div>
-                <div class="bg-white p-6 shadow-lg">
-                    <img src="https://www.onerugged.com/upload/goods/2023-03/64215f882db93.jpg" alt="Produkt 2"
-                        class="w-full h-40 object-cover mb-4">
-                    <h3 class="text-2xl font-semibold mb-4">Produkt 2</h3>
-                    <p>Opis produktu 2. Niezawodne urządzenie do zastosowań przemysłowych.</p>
-                    <a href="#" class="text-yellow-700 font-semibold hover:underline">Dowiedz się więcej</a>
-                </div>
-                <div class="bg-white p-6 shadow-lg">
-                    <img src="https://www.onerugged.com/upload/goods/2023-03/64212fc34c0f7.jpg" alt="Produkt 3"
-                        class="w-full h-40 object-cover mb-4">
-                    <h3 class="text-2xl font-semibold mb-4">Produkt 3</h3>
-                    <p>Opis produktu 3. Idealne rozwiązanie dla logistyki i transportu.</p>
-                    <a href="#" class="text-yellow-700 font-semibold hover:underline">Dowiedz się więcej</a>
-                </div>
-                <div class="bg-white p-6 shadow-lg">
-                    <img src="https://www.onerugged.com/upload/goods/2023-03/64210b05ab2a4.jpg" alt="Produkt 4"
-                        class="w-full h-40 object-cover mb-4">
-                    <h3 class="text-2xl font-semibold mb-4">Produkt 4</h3>
-                    <p>Opis produktu 4. Wytrzymałe urządzenie do pracy na budowach.</p>
-                    <a href="#" class="text-yellow-700 font-semibold hover:underline">Dowiedz się więcej</a>
+                <div hx-get="/.netlify/functions/scrape" hx-trigger="revealed" hx-swap="outerHTML" style="grid-column: 1 / -1; padding: 6rem 0; display: grid; place-items: center;">
+                    <div class="loader"></div>
                 </div>
             </div>
         </div>
