@@ -24,7 +24,7 @@ exports.handler = async (event) => {
                         class="w-full h-40 object-cover mb-4">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-4">${title}</h3>
-                        <a href="${productLink}" class="text-yellow-700 font-semibold hover:underline">Dowiedz się więcej</a>
+                        <a href="/product?url=${productLink}" class="text-yellow-700 font-semibold hover:underline">Dowiedz się więcej</a>
                     </div>
                 </div>
             `;

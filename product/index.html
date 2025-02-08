@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/36ff034593.js" crossorigin="anonymous"></script>
+    <!-- style -->
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="./assets/aos/aos.css">
+    </link>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- font-family  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <!-- tailwind-CDN  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+    <!-- tailwind-confiq  -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'Poppins': ['Poppins', 'sans-serif'],
+                        'ptSerif': ['PT Serif', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- simple swiper implementation -->
+    <link rel="stylesheet" href="./swiper/swiper-simple.css">
+
+    <link rel="stylesheet" href="./style.css">
+    <title>Wytrzymałe urządzenia | 1-rugged.pl</title>
+    <link rel="shortcut icon" href="./assets/images/HardwareHaven-fav-icon.png" type="image/x-icon">
+</head>
+
+<body class="font-Poppins overflow-x-hidden bg-brown-bg">
+    <h1 class="text-3xl font-bold text-center mb-6">Product Viewer</h1>
+
+    <div id="product-container"
+         hx-get="/.netlify/functions/concreteProduct"
+         hx-vals='js:{ url: new URLSearchParams(window.location.search).get("url") }'
+         hx-trigger="load"
+         hx-target="this"
+         hx-swap="outerHTML"
+         class="w-full grid place-items-center">
+         <div class="loader"></div>
+    </div>
+</body>
+
+<!-- jquery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<!-- swiper -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- aos -->
+<script src="./assets/aos/aos.js"></script>
+<!-- main js -->
+<!-- <script src="./main.js"></script> -->
+<script src="./swiper/swiper-simple.js"></script>
+
+</html>
