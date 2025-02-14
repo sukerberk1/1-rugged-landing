@@ -32,16 +32,16 @@ exports.handler = async (event) => {
         deviceCategories.forEach((category) => {
             htmlResponse += `
             <div style="grid-column: 1/-1;">
-                <h2 class="font-semibold text-2xl mb-4">${category.categoryName}</h2>
+                <h2 class="font-semibold text-2xl mb-4 mt-10">${category.categoryName}</h2>
                 <hr/>
             </div>
             `;
 
             allDevices.filter(o => category.categoryDevices.includes(o.title)).forEach((device) => {
                 htmlResponse += `
-                <div class="bg-white shadow-lg">
+                <div class="bg-white shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
                     <img src="${device.fullImageUrl}" alt="${device.title}"
-                        class="w-full h-40 object-cover mb-4">
+                        class="w-full h-40 object-contain mb-4">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-4">${device.title}</h3>
                         <a href="/product?url=${device.productLink}" class="text-yellow-700 font-semibold hover:underline">Dowiedz się więcej</a>
