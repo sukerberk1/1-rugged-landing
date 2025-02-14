@@ -37,10 +37,10 @@ exports.handler = async (event) => {
 
         // append product overview section
 
-        const description = $("div.txt div.p.wow p").first().text();
+        const description = $("div.detail1.block div.w1440 div.con.flex div.txt p").map((index, element) => $(element).text()).get().join(" ");
 
         const translator = new deepl.Translator("d6ef2641-5bbc-431c-9590-ab6c9070d5a1:fx");
-        const localizedDescription = (await translator.translateText(description, "en", "pl")).text;
+        const localizedDescription = (await translator.translateText(description, "en", "pl", { formality: "prefer_more", splitSentences: "off" })).text;
 
         htmlResponse += `
         <section class="container mx-auto px-4 py-12">
@@ -75,10 +75,10 @@ exports.handler = async (event) => {
         $(".parameters .item").each((index, element) => {
             const title = $(element).find(".t").text().trim();
             const value = $(element).find(".p p").text().trim();
-
+            if (title.includes("配")) { return; }
             htmlResponse += `
-            <div class="font-semibold">${title}</div>
-            <div>${value}</div>
+            <div class="font-semibold border-b-2 border-gray-200">${title}</div>
+            <div class="border-b-2 border-gray-200">${value}</div>
             `;
         });
 
