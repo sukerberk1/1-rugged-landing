@@ -1,5 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const deepl = require("deepl-node");
 
 exports.handler = async (event) => {
     try {
@@ -38,6 +39,9 @@ exports.handler = async (event) => {
 
         const description = $("div.txt div.p.wow p").first().text();
 
+        const translator = new deepl.Translator("d6ef2641-5bbc-431c-9590-ab6c9070d5a1:fx");
+        const localizedDescription = (await translator.translateText(description, "en", "pl")).text;
+
         htmlResponse += `
         <section class="container mx-auto px-4 py-12">
                 <h2 class="text-2xl">Urządzenie</h2>
@@ -49,7 +53,7 @@ exports.handler = async (event) => {
                     </div>
                     <div>
                         <h2 class="text-3xl font-semibold mb-2">${title}</h2>
-                        <p>${description}</p>
+                        <p>${localizedDescription}</p>
                         <div class="flex items-center gap-4 mt-4">
                             <a href="mailto:info@1rugged.pl"
                             class="bg-white text-black px-6 py-3 font-semibold hover:bg-yellow-700 hover:text-white transition-all duration-300 border border-yellow-700">Skontaktuj
