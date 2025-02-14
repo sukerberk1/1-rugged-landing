@@ -28,7 +28,9 @@
     <!-- tailwind-CDN  -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- HTMX -->
-    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"
+        integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+        crossorigin="anonymous"></script>
     <!-- tailwind-confiq  -->
     <script>
         tailwind.config = {
@@ -58,8 +60,10 @@
         <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50">
             <div class="flex flex-col items-center justify-center h-screen">
                 <div class="text-center max-w-4xl">
-                    <h1 class="lg:text-7xl text-4xl font-semibold text-white mb-12" data-aos="fade-up" data-aos-delay="0">Wytrzymałe urządzenia 1-rugged</h1>
-                    <p class="text-white" data-aos="fade-up" data-aos-delay="100">Oferujemy wytrzymałe urządzenia, które sprawdzą się w najtrudniejszych
+                    <h1 class="lg:text-7xl text-4xl font-semibold text-white mb-12" data-aos="fade-up"
+                        data-aos-delay="0">Wytrzymałe urządzenia <span class="text-yellow-500">ONE</span>rugged</h1>
+                    <p class="text-white" data-aos="fade-up" data-aos-delay="100">Oferujemy wytrzymałe urządzenia, które
+                        sprawdzą się w najtrudniejszych
                         warunkach. Nasze komputery i sprzęt są idealne do zastosowań w koparkach, na budowach oraz
                         wszędzie tam, gdzie liczy się niezawodność i trwałość.</p>
                 </div>
@@ -113,7 +117,7 @@
                     class="text-yellow-700">wytrzymałych</span> urządzeń</h2>
             <div class="flex md:flex-row flex-col gap-8 shadow-lg bg-white" data-aos="fade-left">
                 <img src="https://www.onerugged.com/upload/goods/2023-03/6421030a5a5ef.jpg" alt="Budownictwo"
-                    class="w-full md:w-1/2 h-80 object-cover"/>
+                    class="w-full md:w-1/2 h-80 object-cover" />
                 <div class="p-6 md:w-1/2">
                     <h3 class="text-2xl lg:text-3xl font-semibold mb-4 lg:mt-12">Budownictwo</h3>
                     <p>Nasze urządzenia są idealne do pracy na budowach, gdzie warunki są trudne i wymagające.
@@ -122,7 +126,7 @@
             </div>
             <div class="flex md:flex-row flex-col gap-8 shadow-lg bg-white" data-aos="fade-right">
                 <img src="https://www.onerugged.com/upload/goods/2023-03/64215f882db93.jpg" alt="Koparki"
-                    class="w-full md:w-1/2 h-80 object-cover"/>
+                    class="w-full md:w-1/2 h-80 object-cover" />
                 <div class="p-6 md:w-1/2">
                     <h3 class="text-2xl lg:text-3xl font-semibold mb-4 lg:mt-12">Koparki</h3>
                     <p>Wytrzymałe komputery i sprzęt, które sprawdzą się w najtrudniejszych warunkach pracy w koparkach
@@ -131,7 +135,7 @@
             </div>
             <div class="flex md:flex-row flex-col gap-8 shadow-lg bg-white" data-aos="fade-left">
                 <img src="https://www.onerugged.com/upload/goods/2023-03/64212fc34c0f7.jpg" alt="Przemysł"
-                    class="w-full md:w-1/2 h-80 object-cover"/>
+                    class="w-full md:w-1/2 h-80 object-cover" />
                 <div class="p-6 md:w-1/2">
                     <h3 class="text-2xl lg:text-3xl font-semibold mb-4 lg:mt-12">Zaawansowany przemysł</h3>
                     <p>Nasze urządzenia są zaprojektowane do pracy w trudnych warunkach przemysłowych, zapewniając
@@ -140,7 +144,7 @@
             </div>
             <div class="flex md:flex-row flex-col gap-8 shadow-lg bg-white" data-aos="fade-right">
                 <img src="https://www.onerugged.com/upload/goods/2023-03/64210b05ab2a4.jpg" alt="Logistyka"
-                    class="w-full md:w-1/2 h-80 object-cover"/>
+                    class="w-full md:w-1/2 h-80 object-cover" />
                 <div class="p-6 md:w-1/2">
                     <h3 class="text-2xl lg:text-3xl font-semibold mb-4 lg:mt-12">Logistyka</h3>
                     <p>Wytrzymałe urządzenia, które sprawdzą się w logistyce, zapewniając niezawodność i trwałość w
@@ -156,19 +160,83 @@
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-semibold text-center mb-12">Sprawdź nasze produkty</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div 
-                hx-get="/.netlify/functions/productList" 
-                hx-trigger="revealed" 
-                hx-swap="outerHTML" 
-                style="grid-column: 1 / -1; padding: 6rem 0; display: grid; place-items: center;"
-                hx-on::after-swap="AOS.refresh()"
-                >
+                <div hx-get="/.netlify/functions/productList" hx-trigger="revealed" hx-swap="outerHTML"
+                    style="grid-column: 1 / -1; padding: 6rem 0; display: grid; place-items: center;"
+                    hx-on::after-swap="AOS.refresh()">
                     <div class="loader"></div>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <footer class="relative bg-yellow-900 pt-8 pb-6 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap text-left lg:text-left">
+                <div class="w-full lg:w-6/12 px-4 space-y-5">
+                    <h4 class="text-3xl font-semibold text-blueGray-700">Skontaktuj się z nami, aby omówić swoje
+                        potrzeby dotyczące wytrzymałych urządzeń</h4>
+                    <p class="mt-5">Poniżej znajdziesz przydatne informacje kontaktowe</p>
+                    <ul class="list-unstyled text-sm space-y-2 mt-4 text-blueGray-500 font-semibold">
+                        <li>
+                            Mail kontaktowy - informacja: <a href="mailto:info@1-rugged.pl" class="underline">info@1-rugged.pl</a>
+                        </li>
+                        <li>
+                            Mail kontaktowy - serwis: <a href="mailto:info@1-rugged.pl" class="underline">serwis@1-rugged.pl</a>
+                        </li>
+                        <li>
+                            Dystrybutorem urządzeń ONErugged w Polsce jest firma LITEKO
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-full lg:w-6/12 px-4">
+                    <div class="flex flex-wrap items-top mb-6">
+                        <div class="w-full lg:w-4/12 px-4 ml-auto">
+                            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Nawigacja</span>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                        href="#hero">Przewiń do góry</a>
+                                </li>
+                                <li>
+                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                        href="#use-cases">Zastosowania</a>
+                                </li>
+                                <li>
+                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                        href="#products">Produkty</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="w-full lg:w-4/12 px-4">
+                            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Inne linki</span>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                        href="https://www.onerugged.com/">Producent urządzeń ONErugged</a>
+                                </li>
+                                <li>
+                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                        href="mailto:info@1-rugged.pl">Kontakt - informacje</a>
+                                </li>
+                                <li>
+                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                        href="mailto:serwis@1-rugged.pl">Kontakt - serwis</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-6 border-blueGray-300">
+            <div class="flex flex-wrap items-center md:justify-between justify-center">
+                <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+                    <div class="text-sm text-blueGray-500 font-semibold py-1">
+                        Copyright © <span id="get-current-year">2025</span> LITEKO / 1-rugged
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 <!-- jquery -->
@@ -179,11 +247,11 @@
 <script src="./assets/aos/aos.js"></script>
 <script src="./assets/aos/aos.js"></script>
 <script>
-  AOS.init({
-    duration: 400, // values from 0 to 3000, with step 50ms
-    once: true, // whether animation should happen only once - while scrolling down
-    easing: 'ease-in-out', // default easing for AOS animations
-  });
+    AOS.init({
+        duration: 400, // values from 0 to 3000, with step 50ms
+        once: true, // whether animation should happen only once - while scrolling down
+        easing: 'ease-in-out', // default easing for AOS animations
+    });
 </script>
 
 <!-- main js -->
