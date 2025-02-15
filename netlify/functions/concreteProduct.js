@@ -25,11 +25,11 @@ exports.handler = async (event) => {
         <section class="relative w-screen h-64" id="hero">
             <div class="absolute top-0 left-0 w-full bg-yellow-500 bg-opacity-50 z-50 text-white">
                 <div class="p-3 w-full flex justify-around">
-                    <div class="inline-flex items-center gap-2">
-                        <img src="/assets/svg/mail.svg" alt="Mail" class="w-6 inline-block" /> Obsługa: <a href="mailto:serwis@1-rugged.pl">serwis@1-rugged.pl</a>
+                    <div class="inline-flex items-center gap-2 flex-wrap">
+                        <img src="/assets/svg/mail.svg" alt="Mail" class="w-6" /> Serwis: <a href="mailto:serwis@1-rugged.pl">serwis@1-rugged.pl</a>
                     </div>
-                    <div class="inline-flex items-center gap-2">
-                        <img src="/assets/svg/telephone.svg" alt="Mail" class="w-6 inline-block" /> +48 123 456 789
+                    <div class="inline-flex items-center gap-2 flex-wrap">
+                        <img src="/assets/svg/telephone.svg" alt="Mail" class="w-6" /> Telefon: <span>+48 123 456 789</span>
                     </div>
                 </div>
             </div>
