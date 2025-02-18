@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 
 const deviceCategories = [
     { categoryName: "Wytrzymałe Tablety", categoryDevices: ["M14A", "M14M", "M10A", "M10T"] },
-    { categoryName: "Wytrzymałe NoteBooki", categoryDevices: ["N14A", "N14M", "N15A", "N15M"] },
+    { categoryName: "Wytrzymałe Notebooki", categoryDevices: ["N14A", "N14M", "N15A", "N15M"] },
     { categoryName: "Komputery Panel PC", categoryDevices: ["P21A"] },
     { categoryName: "Wytrzymałe urządzenia Handheld", categoryDevices: ["H68T"] },
 ];
