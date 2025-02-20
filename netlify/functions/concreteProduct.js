@@ -117,7 +117,7 @@ exports.handler = async (event) => {
                                         <p class="text-gray-300">Preferowany adres e-mail do kontaktu w sprawie dostępnej oferty.</p>
                                 </li>
                                 <li>
-                                    Mail kontaktowy - serwis: <a href="mailto:info@1rugged.pl"
+                                    Mail kontaktowy - serwis: <a href="mailto:serwis@1rugged.pl"
                                         class="underline">serwis@1rugged.pl</a>
                                         <p class="text-gray-300">Preferowany adres e-mail do kontaktu w sprawie serwisowania urządzeń.</p>
                                 </li>
