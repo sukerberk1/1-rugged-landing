@@ -29,7 +29,7 @@ exports.handler = async (event) => {
                         <img src="/assets/svg/mail.svg" alt="Mail" class="w-6" /> Kontakt: <a href="mailto:info@1rugged.pl">info@1rugged.pl</a>
                     </div>
                     <div class="inline-flex items-center gap-2 flex-wrap">
-                        <img src="/assets/svg/telephone.svg" alt="Mail" class="w-6" /> Telefon: <span>+48 123 456 789</span>
+                        <img src="/assets/svg/telephone.svg" alt="Mail" class="w-6" /> Telefon: <span>+48 453 230 603</span>
                     </div>
                 </div>
             </div>
