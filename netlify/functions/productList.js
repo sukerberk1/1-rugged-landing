@@ -2,10 +2,38 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 const deviceCategories = [
-    { categoryName: "Wytrzymałe Tablety", categoryDevices: ["M14A", "M14M", "M10A", "M10T", "M20A"] },
-    { categoryName: "Wytrzymałe Notebooki", categoryDevices: ["N14A", "N14M", "N15A", "N15M"] },
-    { categoryName: "Komputery Panel PC", categoryDevices: ["P21A"] },
-    { categoryName: "Wytrzymałe urządzenia Handheld", categoryDevices: ["H68T"] },
+    { 
+        categoryName: "Wytrzymałe Tablety", 
+        categoryDevices: ["M14A", "M14M", "M10T", "M20A"],
+        manuallyAdded: [
+            {
+                name: "M10A",
+                imageUrl: "https://www.onerugged.com/upload/goods/2023-05/646eb7f469963.png",
+                productLink: "https://www.onerugged.com/productinfo17.html"
+            }
+        ]
+    },
+    { 
+        categoryName: "Wytrzymałe Notebooki", 
+        categoryDevices: ["N14A", "N14M", "N15A", "N15M"],
+        manuallyAdded: []
+    },
+    { 
+        categoryName: "Komputery Panel PC", 
+        categoryDevices: [],
+        manuallyAdded: [
+            {
+                name: "P21A",
+                imageUrl: "https://www.onerugged.com/upload/goods/2024-03/65f14eea5b0a8.png",
+                productLink: "https://www.onerugged.com/productinfo36.html"
+            }
+        ]
+    },
+    { 
+        categoryName: "Wytrzymałe urządzenia Handheld", 
+        categoryDevices: ["H68T"],
+        manuallyAdded: []
+    }
 ];
 
 exports.handler = async (event) => {
@@ -17,6 +45,7 @@ exports.handler = async (event) => {
 
         const allDevices = [];
 
+        // fetch info for category devices and add them to allDevices array
         $(".li2 .navboxItem .blx_list ul li").each((index, element) => {
             const title = $(element).find(".nbame").text().trim();
             const imageUrl = $(element).find(".images img").attr("src");
@@ -25,6 +54,13 @@ exports.handler = async (event) => {
             const fullImageUrl = `https://www.onerugged.com${imageUrl}`; // Convert image path to absolute
             
             allDevices.push({ title, fullImageUrl, productLink });
+        });
+
+        // add manually added devices
+        deviceCategories.forEach((category) => {
+            category.manuallyAdded.forEach((device) => {
+                allDevices.push({ title: device.name, fullImageUrl: device.imageUrl, productLink: device.productLink });
+            });
         });
 
         let htmlResponse = "";
@@ -37,7 +73,8 @@ exports.handler = async (event) => {
             </div>
             `;
 
-            allDevices.filter(o => category.categoryDevices.includes(o.title)).forEach((device) => {
+            allDevices.filter(o => category.categoryDevices.includes(o.title) || category.manuallyAdded.map(x => x.name).includes(o.title))
+            .forEach((device) => {
                 htmlResponse += `
                 <div class="bg-white shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
                     <img src="${device.fullImageUrl}" alt="${device.title}"
