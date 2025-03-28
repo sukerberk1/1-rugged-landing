@@ -63,6 +63,13 @@ exports.handler = async (event) => {
             });
         });
 
+        // move M10T to the end
+        const m10tIndex = allDevices.findIndex(device => device.title === "M10T");
+        if (m10tIndex > -1) {
+            const m10tDevice = allDevices.splice(m10tIndex, 1)[0];
+            allDevices.push(m10tDevice);
+        }
+
         let htmlResponse = "";
 
         deviceCategories.forEach((category) => {
