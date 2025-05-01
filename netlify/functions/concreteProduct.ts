@@ -1,11 +1,12 @@
-const axios = require("axios");
-const cheerio = require("cheerio");
-const deepl = require("deepl-node");
+import axios from "axios";
+import * as cheerio from "cheerio";
+import * as deepl from "deepl-node";
+import { Handler, HandlerEvent, HandlerResponse } from "@netlify/functions";
 
-exports.handler = async (event) => {
+export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> => {
     try {
         // Get product URL from query parameters
-        const productUrl = event.queryStringParameters.url;
+        const productUrl = event.queryStringParameters?.url;
         if (!productUrl) {
             return { statusCode: 400, body: "Missing product URL!" };
         }
@@ -17,7 +18,6 @@ exports.handler = async (event) => {
         let htmlResponse = "";
 
         // append hero section
-
         const title = $("div.tit span").first().text().trim();
         const mainImgUrl = "https://onerugged.com" + $(".productSwiper").find(".images img").attr("src");
 
@@ -46,9 +46,7 @@ exports.handler = async (event) => {
         `;
 
         // append product overview section
-
         const description = $("div.detail1.block div.w1440 div.con.flex div.txt p").map((index, element) => $(element).text()).get().join(" ");
-
         const translator = new deepl.Translator("d6ef2641-5bbc-431c-9590-ab6c9070d5a1:fx");
         const localizedDescription = (await translator.translateText(description, "en", "pl", { formality: "prefer_more", splitSentences: "off" })).text;
 
@@ -74,7 +72,6 @@ exports.handler = async (event) => {
         `;
 
         // append tech specification section
-
         htmlResponse += `
         <section class="container mx-auto px-4 py-12">
             <h2 class="text-2xl">Spefyfikacja techniczna</h2>
@@ -92,15 +89,38 @@ exports.handler = async (event) => {
             `;
         });
 
-        // close tech specification section
-
         htmlResponse += `
             </div>
         </section>
         `;
 
-        // append footer
+        // append drivers section only for N14M or M20A (title contains, not equals)
+        if (title.includes("N14M") || title.includes("M20A")) {
+            let driverLinks = "";
+            if (title.includes("N14M")) {
+                driverLinks = `
+                    <li><a href="https://drive.google.com/file/d/1g11eavcqdtRWovvAhU4q2zQL4weuQ7Ld/view?usp=sharing" class="text-blue-600 underline">Sterownik N14M</a></li>
+                `;
+            } else if (title.includes("M20A")) {
+                driverLinks = `
+                    <li><a href="https://drive.google.com/file/d/1VEZWD75rGS2ZnHaJJP1MS_emKCaRFZy1/view?usp=sharing" class="text-blue-600 underline">Sterownik M20A</a></li>
+                `;
+            }
+            htmlResponse += `
+            <section class="container mx-auto px-4 py-12">
+                <h2 class="text-2xl">Sterowniki do pobrania</h2>
+                <hr class="my-8"/>
+                <div class="space-y-4">
+                    <p>Znajdziesz tutaj sterowniki do urządzenia, jeśli są dostępne:</p>
+                    <ul class="list-disc pl-6">
+                        ${driverLinks}
+                    </ul>
+                </div>
+            </section>
+            `;
+        }
 
+        // append footer section
         htmlResponse += `
         <footer class="relative bg-yellow-950 pt-8 pb-6 text-white">
             <div class="container mx-auto px-4">
@@ -183,7 +203,7 @@ exports.handler = async (event) => {
             headers: { "Content-Type": "text/html" },
             body: htmlResponse,
         };
-    } catch (error) {
+    } catch (error: any) {
         return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
     }
 };
