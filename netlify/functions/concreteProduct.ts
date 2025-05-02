@@ -99,19 +99,18 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
             let driverLinks = "";
             if (title.includes("N14M")) {
                 driverLinks = `
-                    <li><a href="https://drive.google.com/file/d/1g11eavcqdtRWovvAhU4q2zQL4weuQ7Ld/view?usp=sharing" class="text-blue-600 underline">Sterownik N14M</a></li>
+                    <li><a href="https://drive.google.com/file/d/1g11eavcqdtRWovvAhU4q2zQL4weuQ7Ld/view?usp=sharing" class="text-blue-600 underline">Aktualne sterowniki OR N14M</a></li>
                 `;
             } else if (title.includes("M20A")) {
                 driverLinks = `
-                    <li><a href="https://drive.google.com/file/d/1VEZWD75rGS2ZnHaJJP1MS_emKCaRFZy1/view?usp=sharing" class="text-blue-600 underline">Sterownik M20A</a></li>
+                    <li><a href="https://drive.google.com/file/d/1VEZWD75rGS2ZnHaJJP1MS_emKCaRFZy1/view?usp=sharing" class="text-blue-600 underline">Aktualne sterowniki OR M20A</a></li>
                 `;
             }
             htmlResponse += `
             <section class="container mx-auto px-4 py-12">
-                <h2 class="text-2xl">Sterowniki do pobrania</h2>
+                <h2 class="text-2xl">Do pobrania</h2>
                 <hr class="my-8"/>
                 <div class="space-y-4">
-                    <p>Znajdziesz tutaj sterowniki do urządzenia, jeśli są dostępne:</p>
                     <ul class="list-disc pl-6">
                         ${driverLinks}
                     </ul>
