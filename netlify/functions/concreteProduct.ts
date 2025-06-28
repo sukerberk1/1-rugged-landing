@@ -3,6 +3,47 @@ import * as cheerio from "cheerio";
 import * as deepl from "deepl-node";
 import { Handler, HandlerEvent, HandlerResponse } from "@netlify/functions";
 
+const downloads = [
+    {
+        product: "M14M",
+        spec: "https://drive.google.com/file/d/1MQGz3ZSu2Vly0RhFHYVF9T-YKZMoPiwz/view?usp=sharing"
+    },
+    {
+        product: "M10A",
+        spec: "https://drive.google.com/file/d/1ecpnjAkZATOMsCeDT-OTZMrIji1yj4Qw/view?usp=sharing"
+    },
+    {
+        product: "M10T",
+        spec: "https://drive.google.com/file/d/1Aox2EQlUNjFYk6OP6oi2aXqLcJSilsuf/view?usp=sharing"
+    },
+    {
+        product: "M20A",
+        spec: "https://drive.google.com/file/d/1tnekYiFo5TrcogCLhkCpXnQeXSNZQxa9/view?usp=sharing",
+        drivers: "https://drive.google.com/file/d/1VEZWD75rGS2ZnHaJJP1MS_emKCaRFZy1/view?usp=sharing"
+    },
+    {
+        product: "M14A",
+        spec: "https://drive.google.com/file/d/1E_IaVkn0qaj3sZQ04CXSFp0CV5NuYlmw/view?usp=sharing"
+    },
+    {
+        product: "N14A",
+        spec: "https://drive.google.com/file/d/125SkiQnOP2DlgknxQEGnS-8SOQ-uOBjC/view?usp=sharing"
+    },
+    {
+        product: "N14M",
+        spec: "https://drive.google.com/file/d/1jPkv_HZm-H4tmHve1doIa9MyJT_hIOyW/view?usp=sharing",
+        drivers: "https://drive.google.com/file/d/1g11eavcqdtRWovvAhU4q2zQL4weuQ7Ld/view?usp=sharing"
+    },
+    {
+        product: "N15A",
+        spec: "https://drive.google.com/file/d/1dJSOH5Hwn87aQGiI1gsXUx1retPH869C/view?usp=sharing"
+    },
+    {
+        product: "N15M",
+        spec: "https://drive.google.com/file/d/1gmfgIOfc6EMI2_VtZPbjcyevIWkIE72f/view?usp=sharing"
+    }
+]
+
 export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResponse> => {
     try {
         // Get product URL from query parameters
@@ -19,7 +60,9 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
 
         // append hero section
         const title = $("div.tit span").first().text().trim();
-        const mainImgUrl = "https://onerugged.com" + $(".productSwiper").find(".images img").attr("src");
+        // body > div.productSwiper.swiper-container-initialized.swiper-container-horizontal > ul > li > div > img
+        console.log($(".productSwiper").find("img").eq(0));
+        let mainImgUrl = "https://www.onerugged.com" + $(".productSwiper").find("img").eq(0).attr("src");
 
         htmlResponse += `
         <section class="relative w-screen h-64" id="hero">
@@ -94,33 +137,55 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
         </section>
         `;
 
-        // append drivers section only for N14M or M20A (title contains, not equals)
-        if (title.includes("N14M") || title.includes("M20A")) {
-            let driverLinks = "";
-            if (title.includes("N14M")) {
-                driverLinks = `
-                    <li><a href="https://drive.google.com/file/d/1g11eavcqdtRWovvAhU4q2zQL4weuQ7Ld/view?usp=sharing" class="text-blue-600 underline">Aktualne sterowniki OR N14M</a></li>
-                `;
-            } else if (title.includes("M20A")) {
-                driverLinks = `
-                    <li><a href="https://drive.google.com/file/d/1VEZWD75rGS2ZnHaJJP1MS_emKCaRFZy1/view?usp=sharing" class="text-blue-600 underline">Aktualne sterowniki OR M20A</a></li>
-                `;
-            }
-            htmlResponse += `
-            <section class="container mx-auto px-4 py-12">
-                <h2 class="text-2xl">Do pobrania</h2>
-                <hr class="my-8"/>
-                <div class="space-y-4">
-                    <ul class="list-disc pl-6">
-                        ${driverLinks}
-                    </ul>
-                </div>
-            </section>
-            `;
-        }
+        htmlResponse += renderDownloads(title);
 
         // append footer section
-        htmlResponse += `
+        htmlResponse += renderFooter();
+
+        return {
+            statusCode: 200,
+            headers: { "Content-Type": "text/html" },
+            body: htmlResponse,
+        };
+    } catch (error: any) {
+        return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+    }
+
+    function renderDownloads(title: string) {
+        // find the product in downloads array
+        const product = downloads.find(p => title.includes(p.product));
+        let renderedResponse = "";
+        
+        if (product) {
+            const downloadLinks: string[] = [];
+            
+            if (product.spec) {
+                downloadLinks.push(`<li><a href="${product.spec}" class="text-blue-600 underline">Specyfikacja techniczna ${product.product}</a></li>`);
+            }
+            
+            if (product.drivers) {
+                downloadLinks.push(`<li><a href="${product.drivers}" class="text-blue-600 underline">Aktualne sterowniki ${product.product}</a></li>`);
+            }
+            
+            if (downloadLinks.length > 0) {
+                renderedResponse += `
+                <section class="container mx-auto px-4 py-12">
+                    <h2 class="text-2xl">Do pobrania</h2>
+                    <hr class="my-8"/>
+                    <div class="space-y-4">
+                        <ul class="list-disc pl-6">
+                            ${downloadLinks.join('\n')}
+                        </ul>
+                    </div>
+                </section>
+                `;
+            }
+        }
+        return renderedResponse;
+    }
+
+    function renderFooter() {
+        return `
         <footer class="relative bg-yellow-950 pt-8 pb-6 text-white">
             <div class="container mx-auto px-4">
                 <div class="flex flex-wrap text-left lg:text-left">
@@ -196,13 +261,5 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
             </div>
         </footer>
         `;
-
-        return {
-            statusCode: 200,
-            headers: { "Content-Type": "text/html" },
-            body: htmlResponse,
-        };
-    } catch (error: any) {
-        return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
     }
 };
