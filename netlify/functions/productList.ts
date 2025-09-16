@@ -26,6 +26,76 @@ const manualDevices: Device[] = [
     source: "manual"
   },
   {
+    title: "M20A",
+    imageUrl: "https://www.onerugged.com/upload/goods/2023-05/646ec01493f17.png",
+    productLink: "https://www.onerugged.com/productinfo18.html",
+    category: DeviceCategory.Tablets,
+    source: "manual"
+  },
+  {
+    title: "M14A",
+    imageUrl: "https://www.onerugged.com/upload/goods/2024-12/675ace8a2b7aa.png",
+    productLink: "https://www.onerugged.com/productinfo65.html",
+    category: DeviceCategory.Tablets,
+    source: "manual"
+  },
+  {
+    title: "M14M",
+    imageUrl: "https://www.onerugged.com/upload/goods/2024-11/67481ed1c8da2.png",
+    productLink: "https://www.onerugged.com/productinfo56.html",
+    category: DeviceCategory.Tablets,
+    source: "manual"
+  },
+  {
+    title: "M14M",
+    imageUrl: "https://www.onerugged.com/upload/goods/2024-11/67481ed1c8da2.png",
+    productLink: "https://www.onerugged.com/productinfo56.html",
+    category: DeviceCategory.Tablets,
+    source: "manual"
+  },
+  {
+    title: "M82A",
+    imageUrl: "https://www.onerugged.com/upload/goods/2025-09/68b92be309536.png",
+    productLink: "https://www.onerugged.com/onerugged-m82a-8-inch-12th-gen-intel-rugged-tablet.html",
+    category: DeviceCategory.Tablets,
+    source: "manual"
+  },
+  {
+    title: "N14A",
+    imageUrl: "https://www.onerugged.com/upload/goods/2024-12/675ad0405ab3a.png",
+    productLink: "https://www.onerugged.com/productinfo66.html",
+    category: DeviceCategory.Notebooks,
+    source: "manual"
+  },
+  {
+    title: "N14M",
+    imageUrl: "https://www.onerugged.com/upload/goods/2024-11/67482f5453c27.png",
+    productLink: "https://www.onerugged.com/productinfo57.html",
+    category: DeviceCategory.Notebooks,
+    source: "manual"
+  },
+  {
+    title: "N15A",
+    imageUrl: "https://www.onerugged.com/upload/goods/2024-12/675ad32fa6bb4.png",
+    productLink: "https://www.onerugged.com/productinfo67.html",
+    category: DeviceCategory.Notebooks,
+    source: "manual"
+  },
+  {
+    title: "N15M",
+    imageUrl: "https://www.onerugged.com/upload/goods/2024-11/6748353e9d18b.png",
+    productLink: "https://www.onerugged.com/productinfo58.html",
+    category: DeviceCategory.Notebooks,
+    source: "manual"
+  },
+  {
+    title: "H68T",
+    imageUrl: "https://www.onerugged.com/upload/goods/2025-06/684bf447b750e.png",
+    productLink: "https://www.onerugged.com/productinfo54.html",
+    category: DeviceCategory.Handheld,
+    source: "manual"
+  },
+  {
     title: "P21A",
     imageUrl: "https://www.onerugged.com/upload/goods/2024-03/65f14eea5b0a8.png",
     productLink: "https://www.onerugged.com/productinfo36.html",
@@ -67,14 +137,14 @@ export const handler = async (event: any) => {
     const $ = cheerio.load(data);
 
     const scrapedDevices: Device[] = [];
-    $(".li2 .navboxItem .blx_list ul li").each((_, element) => {
-      const title = $(element).find(".nbame").text().trim();
-      const imageUrl = `https://www.onerugged.com${$(element).find(".images img").attr("src")}`;
-      const relativeLink = $(element).find("a").attr("href");
-      const productLink = `https://www.onerugged.com${relativeLink}`;
-      const category = getCategoryForDevice(title);
-      scrapedDevices.push({ title, imageUrl, productLink, category, source: "scraped" });
-    });
+    // $(".li2 .navboxItem .blx_list ul li").each((_, element) => {
+    //   const title = $(element).find(".nbame").text().trim();
+    //   const imageUrl = `https://www.onerugged.com${$(element).find(".images img").attr("src")}`;
+    //   const relativeLink = $(element).find("a").attr("href");
+    //   const productLink = `https://www.onerugged.com${relativeLink}`;
+    //   const category = getCategoryForDevice(title);
+    //   scrapedDevices.push({ title, imageUrl, productLink, category, source: "scraped" });
+    // });
 
     // Combine and group devices by category
     let allDevices: Device[] = [...scrapedDevices, ...manualDevices];
