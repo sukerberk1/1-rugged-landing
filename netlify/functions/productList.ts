@@ -18,20 +18,6 @@ interface Device {
 
 const manualDevices: Device[] = [
   {
-    title: "M10A",
-    imageUrl: "https://www.onerugged.com/upload/goods/2023-05/646eb7f469963.png",
-    productLink: "https://www.onerugged.com/productinfo17.html",
-    category: DeviceCategory.Tablets,
-    source: "manual"
-  },
-  {
-    title: "M20A",
-    imageUrl: "https://www.onerugged.com/upload/goods/2023-05/646ec01493f17.png",
-    productLink: "https://www.onerugged.com/productinfo18.html",
-    category: DeviceCategory.Tablets,
-    source: "manual"
-  },
-  {
     title: "M14A",
     imageUrl: "https://www.onerugged.com/upload/goods/2024-12/675ace8a2b7aa.png",
     productLink: "https://www.onerugged.com/productinfo65.html",
@@ -46,9 +32,16 @@ const manualDevices: Device[] = [
     source: "manual"
   },
   {
-    title: "M14M",
-    imageUrl: "https://www.onerugged.com/upload/goods/2024-11/67481ed1c8da2.png",
-    productLink: "https://www.onerugged.com/productinfo56.html",
+    title: "M20A",
+    imageUrl: "https://www.onerugged.com/upload/goods/2023-05/646ec01493f17.png",
+    productLink: "https://www.onerugged.com/productinfo18.html",
+    category: DeviceCategory.Tablets,
+    source: "manual"
+  },
+  {
+    title: "M10A",
+    imageUrl: "https://www.onerugged.com/upload/goods/2023-05/646eb7f469963.png",
+    productLink: "https://www.onerugged.com/productinfo17.html",
     category: DeviceCategory.Tablets,
     source: "manual"
   },
@@ -56,6 +49,13 @@ const manualDevices: Device[] = [
     title: "M82A",
     imageUrl: "https://www.onerugged.com/upload/goods/2025-09/68b92be309536.png",
     productLink: "https://www.onerugged.com/onerugged-m82a-8-inch-12th-gen-intel-rugged-tablet.html",
+    category: DeviceCategory.Tablets,
+    source: "manual"
+  },
+  {
+    title: "M10T",
+    imageUrl: "https://www.onerugged.com/upload/goods/2023-05/646ef3a791b24.png",
+    productLink: "https://www.onerugged.com/productinfo20.html",
     category: DeviceCategory.Tablets,
     source: "manual"
   },
