@@ -1,5 +1,4 @@
 import axios from "axios";
-import * as cheerio from "cheerio";
 
 enum DeviceCategory {
   Tablets = "Wytrzymałe Tablety",
@@ -134,7 +133,6 @@ export const handler = async (event: any) => {
   try {
     const targetUrl = "https://www.onerugged.com/";
     const { data } = await axios.get(targetUrl);
-    const $ = cheerio.load(data);
 
     const scrapedDevices: Device[] = [];
     // $(".li2 .navboxItem .blx_list ul li").each((_, element) => {
