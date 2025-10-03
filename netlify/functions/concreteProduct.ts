@@ -41,6 +41,10 @@ const downloads = [
     {
         product: "N15M",
         spec: "https://drive.google.com/file/d/1gmfgIOfc6EMI2_VtZPbjcyevIWkIE72f/view?usp=sharing"
+    },
+    {
+        product: "M82A",
+        spec: "https://drive.google.com/file/d/1cSEBymTM1vVcUS3_-LrQmFoWVMgmLQqu/view?usp=sharing"
     }
 ]
 
