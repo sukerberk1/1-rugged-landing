@@ -39,9 +39,23 @@ const manualDevices: Device[] = [
     source: "manual"
   },
   {
+    title: "M20L",
+    imageUrl: "https://www.onerugged.com/upload/goods/2026-07/6a5053587809c.png",
+    productLink: "https://www.onerugged.com/m20l-rugged-ai-tablet.html",
+    category: DeviceCategory.Tablets,
+    source: "manual"
+  },
+  {
     title: "M10A",
     imageUrl: "https://www.onerugged.com/upload/goods/2023-05/646eb7f469963.png",
     productLink: "https://www.onerugged.com/productinfo17.html",
+    category: DeviceCategory.Tablets,
+    source: "manual"
+  },
+  {
+    title: "M10L",
+    imageUrl: "https://www.onerugged.com/upload/goods/2026-07/6a4f114db10c7.png",
+    productLink: "https://www.onerugged.com/m10l-rugged-ai-tablet.html",
     category: DeviceCategory.Tablets,
     source: "manual"
   },
@@ -110,30 +124,8 @@ const categories = [
   DeviceCategory.Handheld
 ];
 
-function getCategoryForDevice(title: string): DeviceCategory {
-  switch (title) {
-    case "M14A":
-    case "M14M":
-    case "M10T":
-    case "M20A":
-      return DeviceCategory.Tablets;
-    case "N14A":
-    case "N14M":
-    case "N15A":
-    case "N15M":
-      return DeviceCategory.Notebooks;
-    case "H68T":
-      return DeviceCategory.Handheld;
-    default:
-      return DeviceCategory.Other;
-  }
-}
-
 export const handler = async (event: any) => {
   try {
-    const targetUrl = "https://www.onerugged.com/";
-    const { data } = await axios.get(targetUrl);
-
     const scrapedDevices: Device[] = [];
     // $(".li2 .navboxItem .blx_list ul li").each((_, element) => {
     //   const title = $(element).find(".nbame").text().trim();

@@ -63,7 +63,9 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
         let htmlResponse = "";
 
         // append hero section
-        const title = $("div.tit span").first().text().trim();
+        const title =
+            productUrl.toLowerCase().includes("m20l") ? "M20L" // One-off exception for m20l
+                : $("div.tit span").first().text().trim();
         // body > div.productSwiper.swiper-container-initialized.swiper-container-horizontal > ul > li > div > img
         console.log($(".productSwiper").find("img").eq(0));
         let mainImgUrl = "https://www.onerugged.com" + $(".productSwiper").find("img").eq(0).attr("src");
@@ -94,9 +96,15 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
 
         // append product overview section
         const description = $("div.detail1.block div.w1440 div.con.flex div.txt p").map((index, element) => $(element).text()).get().join(" ");
-        const translator = new deepl.Translator("d6ef2641-5bbc-431c-9590-ab6c9070d5a1:fx");
-        const localizedDescription = (await translator.translateText(description, "en", "pl", { formality: "prefer_more", splitSentences: "off" })).text;
-
+        let localizedDescription;
+        if (title.includes("M20L")) {
+            localizedDescription = `
+            Urządzenie M20L zostało zaprojektowane z myślą o podniesieniu wydajności pracy w terenie na nowy poziom dzięki zaawansowanemu procesorowi Intel® Core™ Ultra 5 226V z grafika Intel® Arc™, oferującemu wydajność obliczeniową sztucznej inteligencji na poziomie do 40 TOPS (oraz do 97 TOPS łącznej mocy obliczeniowej AI). Wyposażone w 16 GB szybkie pamięci LPDDR5x oraz dysk PCIe SSD o pojemności 256 GB (z możliwością rozbudowy do 32 GB RAM i 1 TB SSD), sprawnie obsługuje złożone obciążenia robocze oraz lokalne aplikacje oparte na sztucznej inteligencji. 12,2-calowy ekran FHD o jasności 700 nitów (z opcją 1000 nitów) zapewnia doskonałą czytelność w pełnym słońcu oraz obsługę w rękawicach, a wytrzymała konstrukcja spełnia rygorystyczne normy IP65 i MIL-STD-810H w zakresie odporności na kurz, wodę i upadki z wysokości do 1,2 m. Bogaty zestaw interfejsów, w tym Thunderbolt 4, Mini HDMI, USB 3.2, moduł rozszerzeń 5 w 1 (np. RJ45, RS232 czy czytnik kodów kreskowych) oraz szybka łączność Wi-Fi 6E, Bluetooth 5.4 i opcjonalne 5G, gwarantują wszechstronną integrację ze sprzętem przemysłowym. System podwójnych akumulatorów (wymienny 5000 mAh z opcją 9800 mAh oraz wbudowany zapasowy 860 mAh z funkcją hot-swap) zapewnia ciągłą i niezawodną pracę bez konieczności wyłączania sprzętu. Model M20L stanowi idealne rozwiązanie dla branż przemysłowych, logistycznych i terenowych, wymagających potężnej mocy obliczeniowej oraz niezłomnej trwałości w trudnych warunkach.
+            `;
+        } else {
+            const translator = new deepl.Translator("d6ef2641-5bbc-431c-9590-ab6c9070d5a1:fx");
+            localizedDescription = (await translator.translateText(description, "en", "pl", { formality: "prefer_more", splitSentences: "off" })).text;
+        }
         htmlResponse += `
         <section class="container mx-auto px-4 py-12">
                 <h2 class="text-2xl">Urządzenie</h2>
@@ -152,6 +160,7 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
             body: htmlResponse,
         };
     } catch (error: any) {
+        console.log(error);
         return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
     }
 
@@ -159,18 +168,18 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
         // find the product in downloads array
         const product = downloads.find(p => title.includes(p.product));
         let renderedResponse = "";
-        
+
         if (product) {
             const downloadLinks: string[] = [];
-            
+
             if (product.spec) {
                 downloadLinks.push(`<li><a href="${product.spec}" class="text-blue-600 underline">Specyfikacja techniczna ${product.product}</a></li>`);
             }
-            
+
             if (product.drivers) {
                 downloadLinks.push(`<li><a href="${product.drivers}" class="text-blue-600 underline">Aktualne sterowniki ${product.product}</a></li>`);
             }
-            
+
             if (downloadLinks.length > 0) {
                 renderedResponse += `
                 <section class="container mx-auto px-4 py-12">
