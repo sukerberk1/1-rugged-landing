@@ -46,13 +46,6 @@ const manualDevices: Device[] = [
     source: "manual"
   },
   {
-    title: "M10A",
-    imageUrl: "https://www.onerugged.com/upload/goods/2023-05/646eb7f469963.png",
-    productLink: "https://www.onerugged.com/productinfo17.html",
-    category: DeviceCategory.Tablets,
-    source: "manual"
-  },
-  {
     title: "M10L",
     imageUrl: "https://www.onerugged.com/upload/goods/2026-07/6a4f114db10c7.png",
     productLink: "https://www.onerugged.com/m10l-rugged-ai-tablet.html",

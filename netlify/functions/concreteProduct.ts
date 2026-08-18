@@ -22,6 +22,15 @@ const downloads = [
         drivers: "https://drive.google.com/file/d/1VEZWD75rGS2ZnHaJJP1MS_emKCaRFZy1/view?usp=sharing"
     },
     {
+        product: "M20L",
+        spec: "https://drive.google.com/file/d/14kyfrLScqt2Vngc0NHeJVL4HwZVIBTj5/view?usp=sharing",
+        drivers: "https://drive.google.com/file/d/1VEZWD75rGS2ZnHaJJP1MS_emKCaRFZy1/view?usp=sharing"
+    },
+    {
+        product: "M10L",
+        spec: "https://drive.google.com/file/d/1-nN5gsC4HqAWJACFp19sToGvxGaszly9/view?usp=sharing"
+    },
+    {
         product: "M14A",
         spec: "https://drive.google.com/file/d/1E_IaVkn0qaj3sZQ04CXSFp0CV5NuYlmw/view?usp=sharing"
     },
